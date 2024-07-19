@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import catasset from './assets/catasset.png';
 import gifasset from './assets/gifasset.gif';
 import fullmap from './assets/fullmap.png';
+import { items as itemsInit, strings as stringInit, stairs, ground } from './Database';
 
 
 const Game = () => {
     const [keys, setKeys] = useState({ left: false, right: false, up: false, down: false });
+    const [items, setItems] = useState(itemsInit);
     const [activeAsset, setActiveAsset] = useState(catasset);
     const [isFlipped, setIsFlipped] = useState(false); // State for flipping
     const [player, setPlayer] = useState({
@@ -18,29 +20,15 @@ const Game = () => {
       directionX: 1
     });
   
-    const items = [
-      { x: 80, y: 580, width: 50, height: 50 },
-      { x: 200, y: 150, width: 20, height: 20 }
-    ];
-  
-    const stairs = [
-      { x: 330, y: 630, width: 50, height: 50 },
-      { x: 400, y: 250, width: 50, height: 50 }
-    ];
-  
-    const ground = [
-      { x: 0, y: 690, width: 1080, height: 30 },
-      { x: 380, y: 350, width: 300, height: 30 },
-      { x: 750, y: 350, width: 320, height: 30 },
-      { x: 0, y: 350, width: 320, height: 30 }
-  
-    ];
     const gravity = 0.5;
     const [activeItem, setActiveItem] = useState(null);
     const [activeStair, setActiveStair] = useState(null);
     const [previousActiveStair, setPreviousActiveStair] = useState(null);
     const [previousActiveItem, setPreviousActiveItem] = useState(null);
-  
+    const [showTextbox, setShowTextbox] = useState(false); // Track the visibility of the textbox area
+    const [strings, setStrings] = useState(stringInit);
+    const [activeString, setActiveString] = useState(strings.stdefault);
+
     // Item and Stair Collision detection
     useEffect(() => {
       if (previousActiveStair !== activeStair) {
@@ -56,8 +44,10 @@ const Game = () => {
       if (previousActiveItem !== activeItem) {
         if (activeItem && !previousActiveItem) {
           console.log('Collision with an item began:', activeItem);
+          setActiveString(strings[activeItem.text]);
         } else if (previousActiveItem && !activeItem) {
           console.log('Collision with an item ended:', previousActiveItem);
+          setShowTextbox(false);
         }
         setPreviousActiveItem(activeItem);
       }
@@ -72,6 +62,7 @@ const Game = () => {
         if (e.key === 'ArrowRight') setKeys((keys) => ({ ...keys, right: true }));
         if (e.key === 'ArrowUp') setKeys((keys) => ({ ...keys, up: true }));
         if (e.key === 'ArrowDown') setKeys((keys) => ({ ...keys, down: true }));
+        if (e.key === 'E' || e.key === 'e') setKeys((keys) => ({ ...keys, e: true }));
       };
   
       const handleKeyUp = (e) => {
@@ -79,6 +70,7 @@ const Game = () => {
         if (e.key === 'ArrowRight') setKeys((keys) => ({ ...keys, right: false }));
         if (e.key === 'ArrowUp') setKeys((keys) => ({ ...keys, up: false }));
         if (e.key === 'ArrowDown') setKeys((keys) => ({ ...keys, down: false }));
+        if (e.key === 'E' || e.key === 'e') setKeys((keys) => ({ ...keys, e: false }));
       };
   
       window.addEventListener('keydown', handleKeyDown);
@@ -106,8 +98,26 @@ const Game = () => {
       } else if (keys.right) {
           setIsFlipped(false);
       }
-  }, [keys]);
+  }, [keys.left, keys.right]);
+
+
+  //
+  useEffect(() => {
+    if (keys.e) {
+       console.log("e pressed");
+       if(activeItem){
+        setItems((items) =>
+          items.map((item) =>
+            item === activeItem ? { ...item, glow: false } : item
+          )
+        );
+        setShowTextbox(!showTextbox);
+       }
+    }
+}, [keys.e]);
   
+
+
   useEffect(() => {
     if(player.isOnGround){
       if (keys.left || keys.right) {
@@ -119,7 +129,13 @@ const Game = () => {
       }
     }
   }, [keys, player.isOnGround]);
-  
+
+  useEffect(() => {
+
+    console.log('Glowing items:', items.filter((item) => item.glow));
+  }, [items.glow]);
+
+
   
   useEffect(() => {
       const movePlayer = () => {
@@ -214,7 +230,7 @@ const Game = () => {
               top: item.y,
               width: item.width,
               height: item.height,
-              backgroundColor: 'green'
+              backgroundColor: item.glow ? 'green' : 'gray'
             }}
           ></div>
         ))}
@@ -245,6 +261,25 @@ const Game = () => {
             }}
           ></div>
         ))}
+
+        {showTextbox && activeItem && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        left: activeItem.x,
+                        top: activeItem.y - 50, // Adjust as needed
+                        width: '200px',
+                        height: '100px',
+                        backgroundColor: 'white',
+                        border: '1px solid black',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                >
+                    <p>{activeString}</p>
+                </div>
+            )}
       </div>
     );
   };
