@@ -28,6 +28,14 @@ const Game = () => {
     const [showTextbox, setShowTextbox] = useState(false); // Track the visibility of the textbox area
     const [strings, setStrings] = useState(stringInit);
     const [activeString, setActiveString] = useState(strings.stdefault);
+    const [camera, setCamera] = useState({ x: 0, y: 0 });
+    const originalXOffset = 500; // Original horizontal offset
+    const originalYOffset = 355; // Original vertical offset
+    const zoomLevel = 2;
+
+    const scaledXOffset = originalXOffset / zoomLevel;
+    const scaledYOffset = originalYOffset / zoomLevel;
+
 
     // Item and Stair Collision detection
     useEffect(() => {
@@ -58,6 +66,7 @@ const Game = () => {
   //Active listeners for arrow keys
     useEffect(() => {
       const handleKeyDown = (e) => {
+        e.preventDefault();
         if (e.key === 'ArrowLeft') setKeys((keys) => ({ ...keys, left: true }));
         if (e.key === 'ArrowRight') setKeys((keys) => ({ ...keys, right: true }));
         if (e.key === 'ArrowUp') setKeys((keys) => ({ ...keys, up: true }));
@@ -66,6 +75,7 @@ const Game = () => {
       };
   
       const handleKeyUp = (e) => {
+        e.preventDefault();
         if (e.key === 'ArrowLeft') setKeys((keys) => ({ ...keys, left: false }));
         if (e.key === 'ArrowRight') setKeys((keys) => ({ ...keys, right: false }));
         if (e.key === 'ArrowUp') setKeys((keys) => ({ ...keys, up: false }));
@@ -91,6 +101,7 @@ const Game = () => {
       );
     };
   
+
   //Flipper
   useEffect(() => {
       if (keys.left) {
@@ -101,11 +112,12 @@ const Game = () => {
   }, [keys.left, keys.right]);
 
 
+
   // E Key
   useEffect(() => {
     if (keys.e) {
        console.log("e pressed");
-       
+
        if(activeItem){
         setItems((items) =>
           items.map((item) =>
@@ -126,9 +138,9 @@ const Game = () => {
         }
     }
 }, [keys.e]);
-  
 
 
+//Asset change
   useEffect(() => {
     if(player.isOnGround){
       if (keys.left || keys.right) {
@@ -141,8 +153,8 @@ const Game = () => {
     }
   }, [keys, player.isOnGround]);
 
+  //Glow Effect
   useEffect(() => {
-
     console.log('Glowing items:', items.filter((item) => item.glow));
   }, [items.glow]);
 
@@ -156,7 +168,9 @@ const Game = () => {
           let newVelocityY = player.velocityY;
           let newActiveItem = null;
           let newActiveStair = null;
-  
+          let newCameraX = camera.x;
+          let newCameraY = camera.y;
+
           // Apply horizontal movement
           //Move Left
           if (keys.left){
@@ -200,7 +214,11 @@ const Game = () => {
               newPlayer.velocityY = 0;
             }
           });
-    
+
+          newCameraX = player.x - scaledXOffset;
+          newCameraY = player.y - scaledYOffset;
+          setCamera({ x: newCameraX, y: newCameraY });
+
           return newPlayer;
         });
       };
@@ -216,7 +234,10 @@ const Game = () => {
           width: '1080px',
           height: '710px',
           backgroundImage: `url(${fullmap})`,
-          backgroundSize: 'cover'
+          backgroundSize: 'cover',
+          transform: `translate(${-camera.x}px, ${-camera.y}px) scale(${zoomLevel})`, // Apply zoom level
+          transformOrigin: '0 0', // Ensure scaling is centered
+          transition: 'transform 0.1s', // Add a transition to smooth the movement
         }}
       >
         <img    //Player style
