@@ -101,10 +101,11 @@ const Game = () => {
   }, [keys.left, keys.right]);
 
 
-  //
+  // E Key
   useEffect(() => {
     if (keys.e) {
        console.log("e pressed");
+       
        if(activeItem){
         setItems((items) =>
           items.map((item) =>
@@ -113,6 +114,16 @@ const Game = () => {
         );
         setShowTextbox(!showTextbox);
        }
+
+        if(activeStair){
+          stairs.map((stair) => {
+            if (stair.stairId === activeStair.stairPointer) {
+              setPlayer((player) => {
+                return { ...player, x: stair.x, y: stair.y - player.height };
+              });
+            }
+          });
+        }
     }
 }, [keys.e]);
   
@@ -136,7 +147,7 @@ const Game = () => {
   }, [items.glow]);
 
 
-  
+  //Movement 
   useEffect(() => {
       const movePlayer = () => {
         setPlayer((player) => {
