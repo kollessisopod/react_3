@@ -123,6 +123,7 @@ const Game = () => {
           )
         );
         setShowTextbox(!showTextbox);
+        setShowHint(!showHint);
        }
 
         if(activeStair){
@@ -156,9 +157,9 @@ useEffect(() => {
       if (keys.left || keys.right) {
           setActiveAsset(gifasset);
       } else if (keys.up) {
-          setActiveAsset(gifasset); // Use the same jump asset for both directions if applicable
+          setActiveAsset(gifasset); 
       } else {
-          setActiveAsset(catasset); // Idle asset can be the same for both directions
+          setActiveAsset(catasset);
       }
     }
   }, [keys, player.isOnGround]);
