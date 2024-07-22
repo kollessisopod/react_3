@@ -235,9 +235,9 @@ const Game = () => {
           height: '710px',
           backgroundImage: `url(${fullmap})`,
           backgroundSize: 'cover',
-          transform: `translate(${-camera.x}px, ${-camera.y}px) scale(${zoomLevel})`, // Apply zoom level
-          transformOrigin: '0 0', // Ensure scaling is centered
-          transition: 'transform 0.1s', // Add a transition to smooth the movement
+      //    transform: `translate(${-camera.x}px, ${-camera.y}px) scale(${zoomLevel})`, // Apply zoom level
+      //    transformOrigin: '0 0', // Ensure scaling is centered
+      //    transition: 'transform 0.1s', // Add a transition to smooth the movement
         }}
       >
         <img    //Player style
@@ -298,8 +298,8 @@ const Game = () => {
                 <div
                     style={{
                         position: 'absolute',
-                        left: activeItem.x,
-                        top: activeItem.y - 50, // Adjust as needed
+                        left: activeItem.x - 50,
+                        top: activeItem.y - 100, // Adjust as needed
                         width: '200px',
                         height: '100px',
                         backgroundColor: 'white',
