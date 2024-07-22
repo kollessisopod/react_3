@@ -15,6 +15,7 @@ const Game = () => {
     const [previousActiveStair, setPreviousActiveStair] = useState(null); //Previous active stair for collision detection
     const [previousActiveItem, setPreviousActiveItem] = useState(null); // Previous active item for collision detection
     const [showTextbox, setShowTextbox] = useState(false);  //Textbox show boolean
+    const [showHint, setShowHint] = useState(false);  //Hint show boolean
     const [activeString, setActiveString] = useState(strings.stdefault); //Active string
     const [displayedString, setDisplayedString] = useState(''); //Displayed string
     const [charIndex, setCharIndex] = useState(0); //Character index for string showmaker
@@ -36,8 +37,10 @@ const Game = () => {
       if (previousActiveStair !== activeStair) {
         if (activeStair && !previousActiveStair ) {
           console.log('Collision with a stair began:', activeStair);
+          setShowHint(true);
         } else if (previousActiveStair && !activeStair) {
           console.log('Collision with a stair ended:', previousActiveStair);
+          setShowHint(false);
         }
   
         setPreviousActiveStair(activeStair);
@@ -47,17 +50,19 @@ const Game = () => {
         if (activeItem && !previousActiveItem) {
           console.log('Collision with an item began:', activeItem);
           setActiveString(strings[activeItem.text]);
-          setCharIndex(0);
+          setShowHint(true);
         } else if (previousActiveItem && !activeItem) {
           console.log('Collision with an item ended:', previousActiveItem);
           setShowTextbox(false);
+          setShowHint(false);
+          setCharIndex(0);
           setDisplayedString('');
         }
         setPreviousActiveItem(activeItem);
       }
     }, [activeStair, previousActiveStair, activeItem, previousActiveItem]);
   
-  
+
   //Active listeners for arrow keys
     useEffect(() => {
       const handleKeyDown = (e) => {
@@ -105,6 +110,7 @@ const Game = () => {
       }
   }, [keys.left, keys.right]);
 
+  
   // E Key
   useEffect(() => {
     if (keys.e) {
@@ -126,9 +132,11 @@ const Game = () => {
                 return { ...player, x: stair.x, y: stair.y - player.height };
               });
             }
+            return null;
           });
         }
     }
+// eslint-disable-next-line
 }, [keys.e]);
 
 //Textbox Showmaker
@@ -158,6 +166,7 @@ useEffect(() => {
   //Glow Effect
   useEffect(() => {
     console.log('Glowing items:', items.filter((item) => item.glow));
+// eslint-disable-next-line
   }, [items.glow]);
 
   //Movement 
@@ -220,6 +229,7 @@ useEffect(() => {
     
       const interval = setInterval(movePlayer, 20);
       return () => clearInterval(interval);
+// eslint-disable-next-line
     }, [keys, player]);
 
     return (
@@ -290,7 +300,7 @@ useEffect(() => {
                 <div
                     style={{
                         position: 'absolute',
-                        left: activeItem.x - 50,
+                        left: activeItem.x - 95,
                         top: activeItem.y - 100, // Adjust as needed
                         width: '200px',
                         height: '100px',
@@ -302,6 +312,25 @@ useEffect(() => {
                     }}
                 >
                     <p>{displayedString}</p>
+                </div>
+            )}
+
+        {showHint && (activeItem || activeStair) && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        left: player.x - 75,
+                        top: player.y, // Adjust as needed
+                        width: '200px',
+                        height: '100px',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '20px',
+                        color: 'black',
+                        textShadow: '1px 1px 1px white'
+                    }}
+                >
+                    <p>"Press E</p>
                 </div>
             )}
       </div>
