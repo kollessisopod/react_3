@@ -28,6 +28,8 @@ const Game = () => {
       directionX: 1
     });
     const gravity = 0.5;  //Gravity static value
+    const resolution_x = 1080;  //Resolution x
+    const resolution_y = 710;  //Resolution y
 
     // Item and Stair Collision detection
     useEffect(() => {
@@ -224,8 +226,8 @@ useEffect(() => {
       <div
         style={{  //Game container style
           position: 'relative',
-          width: '1080px',
-          height: '710px',
+          width: `${resolution_x}px`,
+          height: `${resolution_y}px`,
           backgroundImage: `url(${fullmap})`,
           backgroundSize: 'cover',
         }}
