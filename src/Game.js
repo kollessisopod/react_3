@@ -2,15 +2,23 @@ import React, { useState, useEffect } from 'react';
 import catasset from './assets/catasset.png';
 import gifasset from './assets/gifasset.gif';
 import fullmap from './assets/fullmap.png';
-import { items as itemsInit, strings as stringInit, stairs, ground } from './Database';
+import { items as itemsInit, strings, stairs, ground } from './Database';
 
 
 const Game = () => {
-    const [keys, setKeys] = useState({ left: false, right: false, up: false, down: false });
-    const [items, setItems] = useState(itemsInit);
-    const [activeAsset, setActiveAsset] = useState(catasset);
-    const [isFlipped, setIsFlipped] = useState(false); // State for flipping
-    const [player, setPlayer] = useState({
+    const [keys, setKeys] = useState({ left: false, right: false, up: false, down: false });  //Arrow keys
+    const [items, setItems] = useState(itemsInit);  //Items
+    const [activeAsset, setActiveAsset] = useState(catasset); //Player asset selector
+    const [isFlipped, setIsFlipped] = useState(false);  //Player asset flipper boolean 
+    const [activeItem, setActiveItem] = useState(null); //Active item
+    const [activeStair, setActiveStair] = useState(null); //Active stair
+    const [previousActiveStair, setPreviousActiveStair] = useState(null); //Previous active stair for collision detection
+    const [previousActiveItem, setPreviousActiveItem] = useState(null); // Previous active item for collision detection
+    const [showTextbox, setShowTextbox] = useState(false);  //Textbox show boolean
+    const [activeString, setActiveString] = useState(strings.stdefault); //Active string
+    const [displayedString, setDisplayedString] = useState(''); //Displayed string
+    const [charIndex, setCharIndex] = useState(0); //Character index for string showmaker
+    const [player, setPlayer] = useState({ //Player object
       x: 50,
       y: 50,
       width: 50,
@@ -19,16 +27,7 @@ const Game = () => {
       isOnGround: false,
       directionX: 1
     });
-  
-    const gravity = 0.5;
-    const [activeItem, setActiveItem] = useState(null);
-    const [activeStair, setActiveStair] = useState(null);
-    const [previousActiveStair, setPreviousActiveStair] = useState(null);
-    const [previousActiveItem, setPreviousActiveItem] = useState(null);
-    const [showTextbox, setShowTextbox] = useState(false); // Track the visibility of the textbox area
-    const [strings, setStrings] = useState(stringInit);
-    const [activeString, setActiveString] = useState(strings.stdefault);
-
+    const gravity = 0.5;  //Gravity static value
 
     // Item and Stair Collision detection
     useEffect(() => {
@@ -46,14 +45,15 @@ const Game = () => {
         if (activeItem && !previousActiveItem) {
           console.log('Collision with an item began:', activeItem);
           setActiveString(strings[activeItem.text]);
+          setCharIndex(0);
         } else if (previousActiveItem && !activeItem) {
           console.log('Collision with an item ended:', previousActiveItem);
           setShowTextbox(false);
+          setDisplayedString('');
         }
         setPreviousActiveItem(activeItem);
       }
     }, [activeStair, previousActiveStair, activeItem, previousActiveItem]);
-  
   
   
   //Active listeners for arrow keys
@@ -94,7 +94,6 @@ const Game = () => {
       );
     };
   
-
   //Flipper
   useEffect(() => {
       if (keys.left) {
@@ -103,8 +102,6 @@ const Game = () => {
           setIsFlipped(false);
       }
   }, [keys.left, keys.right]);
-
-
 
   // E Key
   useEffect(() => {
@@ -132,6 +129,16 @@ const Game = () => {
     }
 }, [keys.e]);
 
+//Textbox Showmaker
+useEffect(() => {
+  if (showTextbox && charIndex < activeString.length) {
+      const timer = setTimeout(() => {
+          setDisplayedString((prev) => prev + activeString[charIndex]);
+          setCharIndex((prev) => prev + 1);
+      }, 30); // Adjust the delay to control typing speed
+      return () => clearTimeout(timer);
+  }
+}, [charIndex, showTextbox, activeString]);
 
 //Asset change
   useEffect(() => {
@@ -151,7 +158,6 @@ const Game = () => {
     console.log('Glowing items:', items.filter((item) => item.glow));
   }, [items.glow]);
 
-
   //Movement 
   useEffect(() => {
       const movePlayer = () => {
@@ -161,7 +167,7 @@ const Game = () => {
           let newVelocityY = player.velocityY;
           let newActiveItem = null;
           let newActiveStair = null;
-          
+
           // Apply horizontal movement
           //Move Left
           if (keys.left){
@@ -293,7 +299,7 @@ const Game = () => {
                         justifyContent: 'center'
                     }}
                 >
-                    <p>{activeString}</p>
+                    <p>{displayedString}</p>
                 </div>
             )}
       </div>
