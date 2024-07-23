@@ -3,7 +3,7 @@ import catasset from './assets/catasset.png';
 import gifasset from './assets/gifasset.gif';
 import fullmap from './assets/fullmap.png';
 import { items as itemsInit, strings, stairs, ground } from './Database';
-
+import './styles.css';
 
 const Game = () => {
     const [keys, setKeys] = useState({ left: false, right: false, up: false, down: false });  //Arrow keys
@@ -29,8 +29,6 @@ const Game = () => {
       directionX: 1
     });
     const gravity = 0.5;  //Gravity static value
-    const resolution_x = 1080;  //Resolution x
-    const resolution_y = 710;  //Resolution y
 
     // Item and Stair Collision detection
     useEffect(() => {
@@ -232,108 +230,88 @@ useEffect(() => {
       return () => clearInterval(interval);
 // eslint-disable-next-line
     }, [keys, player]);
-
+    
     return (
       <div
-        style={{  //Game container style
-          position: 'relative',
-          width: `${resolution_x}px`,
-          height: `${resolution_y}px`,
+        className="game-container"
+        style={{
           backgroundImage: `url(${fullmap})`,
-          backgroundSize: 'cover',
         }}
       >
-        <img    //Player style
+        <img
+          className="player"
           src={activeAsset}
           alt="Player"
           style={{
-            position: 'absolute',
             left: player.x,
             top: player.y,
-            width: player.width,
-            height: player.height,
-            directionX: player.directionX,
-            transform: isFlipped ? 'scaleX(-1)' : 'scaleX(1)'
+            transform: isFlipped ? 'scaleX(-1)' : 'scaleX(1)',
           }}
-        ></img>
+        />
+
         {items.map((item, index) => (
           <div
             key={index}
+            className="item"
             style={{
-              position: 'absolute',
               left: item.x,
               top: item.y,
               width: item.width,
               height: item.height,
-              backgroundColor: item.glow ? 'green' : 'gray'
+              backgroundColor: item.glow ? 'green' : 'gray',
             }}
-          ></div>
+          />
         ))}
+
         {stairs.map((stair, index) => (
           <div
             key={index}
+            className="stair"
             style={{
-              position: 'absolute',
               left: stair.x,
               top: stair.y,
               width: stair.width,
               height: stair.height,
-              backgroundColor: 'red'
             }}
-          ></div>
+          />
         ))}
-  
+
         {ground.map((ground, index) => (
           <div
             key={index}
+            className="ground"
             style={{
-              position: 'absolute',
               left: ground.x,
               top: ground.y,
               width: ground.width,
               height: ground.height,
-              backgroundColor: 'brown'
             }}
-          ></div>
+          />
         ))}
 
         {showTextbox && activeItem && (
-                <div
-                    style={{
-                        position: 'absolute',
-                        left: activeItem.x - 95,
-                        top: activeItem.y - 100, // Adjust as needed
-                        width: '200px',
-                        height: '100px',
-                        backgroundColor: 'white',
-                        border: '1px solid black',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}
-                >
-                    <p>{displayedString}</p>
-                </div>
-            )}
+          <div
+            className="textbox"
+            style={{
+              left: activeItem.x - 95,
+              top: activeItem.y - 100,
+            }}
+          >
+            <p>{displayedString}</p>
+          </div>
+        )}
 
         {showHint && (activeItem || activeStair) && (
-                <div
-                    style={{
-                        position: 'absolute',
-                        left: player.x - 75,
-                        top: player.y, // Adjust as needed
-                        width: '200px',
-                        height: '100px',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '20px',
-                        color: 'black',
-                        textShadow: '1px 1px 1px white'
-                    }}
-                >
-                    <p>"Press E</p>
-                </div>
-            )}
+          <div
+            className="hint"
+            style={{
+              left: player.x - 75,
+              top: player.y,
+            }}
+          >
+            <p>Press E</p>
+          </div>
+        )}
       </div>
     );
   };

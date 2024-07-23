@@ -12,8 +12,8 @@ export const items = [
   ];
   
   export const ground = [
-    { x: 0, y: 690, width: 1080, height: 30 },
-    { x: 0, y: 350, width: 1080, height: 30 }
+    { x: 0, y: 690, width: 1080, height: 20 },
+    { x: 0, y: 350, width: 1080, height: 20 }
   ];
 
   export const strings = {

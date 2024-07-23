@@ -1,0 +1,69 @@
+/* styles.css */
+
+/* General styles for the game container */
+.game-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1080px; /* Match your resolution_x */
+    height: 720px; /* Match your resolution_y */
+    background-size: cover;
+  }
+  
+  /* Styles for the player */
+  .player {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Styles for the items */
+  .item {
+    position: absolute;
+    background-color: gray;
+  }
+  
+  /* Styles for the stairs */
+  .stair {
+    position: absolute;
+    background-color: red;
+  }
+  
+  /* Styles for the ground */
+  .ground {
+    position: absolute;
+    background-color: brown;
+  }
+  
+  /* Styles for the textbox */
+  .textbox {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    background-color: rgb(47, 147, 138);
+    border: 1px solid rgb(255, 217, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    font-family: '16 Point Consolas'; /* Font family */
+    font-size: 16px; /* Font size */
+    color: rgb(255, 217, 0); /* Text color */
+  }
+  
+  /* Styles for the hint */
+  .hint {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    color: black;
+    text-shadow: 1px 1px 1px white;
+  }
