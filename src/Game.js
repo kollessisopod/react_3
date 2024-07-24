@@ -232,6 +232,7 @@ useEffect(() => {
     }, [keys, player]);
     
     return (
+    <div className="wrapper">
       <div
         className="game-container"
         style={{
@@ -313,6 +314,7 @@ useEffect(() => {
           </div>
         )}
       </div>
+    </div>
     );
   };
   

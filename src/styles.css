@@ -1,7 +1,7 @@
 /* styles.css */
 
 /* General styles for the game container */
-.game-container {
+  .game-container {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -9,6 +9,16 @@
     width: 1080px; /* Match your resolution_x */
     height: 720px; /* Match your resolution_y */
     background-size: cover;
+  }
+
+  .wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(31, 102, 96); /* Background color outside the game area */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   /* Styles for the player */
