@@ -1,0 +1,48 @@
+- [ ] pokemon battle
+- [ ] any jrpg battle
+- [ ] 2d game 
+- [ ] character traverses across the map and discovers new areas
+- [ ] every visited area documents info about cv
+- [ ] area is pixelated and mc is also pixelart sprite
+- [ ] maybe an additional jrpg battle logic for a spesific part but itll be pretty hard
+- [ ] its demolitionnnn
+- [ ] wipin all outttt
+
+
+map will have 4 corners that are parts of a house,
+study room,
+living room,
+computer room,
+hobby room.
+
+study room:
+will include old certificates, places of graduation, and things of old
+living room:
+will include skills such as language, my erasmus experience, and my personal life in general
+computer room:
+will include various projects that I've made and links to them
+hobby room:
+will include my hobbies such as video games and DIY products
+
+
+computer | hobbies
+  study | living room
+
+
+- [x] basic physics and movement
+- [x] placeholder character sprites
+- [x] placeholder map
+- [x] advanced physics and movement - ladder
+- [x] placeholder glow effect
+- [x] pop up texts - press e etc
+- [x] pop up long texts
+- [x] dynamic camera 
+- [x] camera options
+- [ ] character sprites
+- [ ] map
+- [ ] textbox assets
+- [ ] physics polish
+- [ ] animation polish
+- [ ] polish
+- [ ] sound effects
+- [ ] release

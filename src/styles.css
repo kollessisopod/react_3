@@ -1,82 +1,91 @@
 /* styles.css */
 
 /* General styles for the game container */
-  .game-container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 1080px; /* Match your resolution_x */
-    height: 720px; /* Match your resolution_y */
-    background-size: cover;
-  }
+.game-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1080px; /* Match your resolution_x */
+  height: 720px; /* Match your resolution_y */
+  background-size: cover;
+  overflow: hidden; /* Ensure that the content outside the container is hidden */
+}
 
-  .wrapper {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(31, 102, 96); /* Background color outside the game area */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Styles for the player */
-  .player {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-  }
-  
-  /* Styles for the items */
-  .item {
-    position: absolute;
-    background-color: gray;
-  }
-  
-  /* Styles for the stairs */
-  .stair {
-    position: absolute;
-    background-color: red;
-  }
-  
-  /* Styles for the ground */
-  .ground {
-    position: absolute;
-    background-color: brown;
-  }
-  
-  /* Styles for the textbox */
-  .textbox {
-    position: absolute;
-    background-color: rgb(47, 147, 138);
-    border: 1px solid rgb(255, 217, 0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
-    font-family: 'Arial', sans-serif; /* Font family */
-    font-size: 16px; /* Font size */
-    color: rgb(255, 217, 0); /* Text color */
-    max-width: 300px; /* Maximum width to ensure it doesn't get too wide */
-    min-width: 100px; /* Minimum width to ensure it's not too narrow */
-    width: auto; /* Auto width based on content */
-    height: auto; /* Auto height based on content */
-    word-wrap: break-word; /* Wrap long words */
-  }
-  
-  /* Styles for the hint */
-  .hint {
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Arial', sans-serif;
-    font-size: 20px;
-    color: black;
-    text-shadow: 1px 1px 1px white;
-  }
+.wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(31, 102, 96); /* Background color outside the game area */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles for the player */
+.player {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+}
+
+/* Styles for the items */
+.item {
+  position: absolute;
+  background-color: gray;
+}
+
+/* Styles for the stairs */
+.stair {
+  position: absolute;
+  background-color: red;
+}
+
+/* Styles for the ground */
+.ground {
+  position: absolute;
+  background-color: brown;
+}
+
+/* Styles for the textbox */
+.textbox {
+  position: absolute;
+  background-color: rgb(47, 147, 138);
+  border: 1px solid rgb(255, 217, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  font-family: 'Arial', sans-serif; /* Font family */
+  font-size: 16px; /* Font size */
+  color: rgb(255, 217, 0); /* Text color */
+  max-width: 300px; /* Maximum width to ensure it doesn't get too wide */
+  min-width: 100px; /* Minimum width to ensure it's not too narrow */
+  width: auto; /* Auto width based on content */
+  height: auto; /* Auto height based on content */
+  word-wrap: break-word; /* Wrap long words */
+}
+
+/* Styles for the hint */
+.hint {
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial', sans-serif;
+  font-size: 20px;
+  color: black;
+  text-shadow: 1px 1px 1px white;
+}
+
+html, body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
