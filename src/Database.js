@@ -1,4 +1,8 @@
-export const items = [
+  import glowasset from './assets/glowasset.gif';
+  import unglowasset from './assets/unglowasset.gif';
+
+
+  export const items = [
     { x: 200, y: 310, width: 10, height: 10, glow: true, text: 'st1' },
     { x: 80, y: 650, width: 10, height: 10, glow: true, text: 'st2' },
     { x: 180, y: 650, width: 10, height: 10, glow: true, text: 'st3' },

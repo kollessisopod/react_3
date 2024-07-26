@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import catasset from './assets/catasset.png';
 import gifasset from './assets/gifasset.gif';
 import fullmap from './assets/fullmap.png';
+import glowasset from './assets/glowasset.gif';
+import unglowasset from './assets/unglowasset.gif';
+
 import { items as itemsInit, strings, stairs, ground } from './Database';
 import './styles.css';
 
@@ -174,6 +177,7 @@ const Game = () => {
     // Glow Effect
     useEffect(() => {
         console.log('Glowing items:', items.filter((item) => item.glow));
+
         // eslint-disable-next-line
     }, [items.glow]);
 
@@ -275,13 +279,21 @@ const Game = () => {
                         key={index}
                         className="item"
                         style={{
-                            left: item.x,
-                            top: item.y,
-                            width: item.width,
-                            height: item.height,
-                            backgroundColor: item.glow ? 'green' : 'gray',
+                        left: item.x,
+                        top: item.y,
+                        width: item.width,
+                        height: item.height,
                         }}
-                    />
+                    >
+                        <img
+                        src={item.glow ? glowasset : unglowasset}
+                        alt="Item"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                        }}
+                        />
+                    </div>
                 ))}
 
                 {stairs.map((stair, index) => (
@@ -314,9 +326,10 @@ const Game = () => {
                     <div
                         className="textbox"
                         style={{
-                            left: activeItem.x - 95,
-                            top: activeItem.y - 100,
-                        }}
+                            bottom: `${window.innerHeight - activeItem.y}px`,
+                            left: `${activeItem.x + activeItem.width / 2}px`,
+                            transform: 'translateX(-50%)',
+                          }}
                     >
                         <p>{displayedString}</p>
                     </div>

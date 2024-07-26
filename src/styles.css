@@ -32,7 +32,6 @@
 /* Styles for the items */
 .item {
   position: absolute;
-  background-color: gray;
 }
 
 /* Styles for the stairs */
@@ -49,7 +48,10 @@
 
 /* Styles for the textbox */
 .textbox {
-  position: absolute;
+position: absolute;
+  bottom: 10px; /* Positioning based on the bottom edge */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
   background-color: rgb(47, 147, 138);
   border: 1px solid rgb(255, 217, 0);
   display: flex;
@@ -66,6 +68,7 @@
   width: auto; /* Auto width based on content */
   height: auto; /* Auto height based on content */
   word-wrap: break-word; /* Wrap long words */
+  transform-origin: bottom center; /* Transform origin at the bottom center */
 }
 
 /* Styles for the hint */
