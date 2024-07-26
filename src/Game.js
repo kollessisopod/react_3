@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import KeyTracker from './KeyTracker';
 import catasset from './assets/catasset.png';
 import gifasset from './assets/gifasset.gif';
 import fullmap from './assets/fullmap.png';
 import glowasset from './assets/glowasset.gif';
 import unglowasset from './assets/unglowasset.gif';
-
 import { items as itemsInit, strings, stairs, ground } from './Database';
 import './styles.css';
 
@@ -31,7 +31,7 @@ const Game = () => {
         isOnGround: false,
         directionX: 1
     });
-    const [camera, setCamera] = useState({ x: 0, y: 0, zoom: 2 }); // Camera state
+    const [camera, setCamera] = useState({ x: 0, y: 0, zoom: 1.5 }); // Camera state
 
     const gravity = 0.5;  // Gravity static value
 
@@ -84,14 +84,6 @@ const Game = () => {
             if (e.key === 'E' || e.key === 'e') setKeys((keys) => ({ ...keys, e: false }));
         };
 
-        const handleWheel = (e) => {
-          e.preventDefault();
-          setCamera((camera) => ({
-              ...camera,
-              zoom: Math.max(0.1, camera.zoom + e.deltaY * -0.001) // Adjust zoom sensitivity
-          }));
-        };
-
       window.addEventListener('keydown', handleKeyDown);
       window.addEventListener('keyup', handleKeyUp);
       window.addEventListener('wheel', handleWheel);
@@ -102,6 +94,16 @@ const Game = () => {
           window.removeEventListener('wheel', handleWheel);
       };
     }, []);
+
+    const handleWheel = (e) => {
+        setCamera((prevCamera) => {
+          let newZoom = prevCamera.zoom + (e.deltaY * -0.001);
+          newZoom = Math.min(Math.max(newZoom, 1), 2);
+          return { ...prevCamera, zoom: newZoom };
+        });
+      };
+
+
 
     const checkCollision = (rect1, rect2) => {
         return (
@@ -243,24 +245,21 @@ const Game = () => {
         // eslint-disable-next-line
     }, [keys, player]);
 
-    const calculateTransformOrigin = () => {
-      const containerWidth = 1080; // Replace with actual width
-      const containerHeight = 720; // Replace with actual height
-
-      const originX = (player.x + player.width / 2) / containerWidth * 100;
-      const originY = (player.y + player.height / 2) / containerHeight * 100;
-
-      return `${originX}% ${originY}%`;
-  };
+    
 
     return (
         <div className="wrapper">
+            
+            <div className="hud">
+                        <p>Zoom Level: {camera.zoom.toFixed(2)}</p>
+                        <KeyTracker/>
+                </div>
             <div
                 className="game-container"
                 style={{
                     backgroundImage: `url(${fullmap})`,
                     transform: `translate(-50%, -50%) scale(${camera.zoom})`,
-                    transformOrigin: calculateTransformOrigin(),
+                    transformOrigin: `${player.x}px ${player.y}px`,
                 }}
             >
                 <img

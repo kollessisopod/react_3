@@ -1,8 +1,8 @@
 
   export const items = [
-    { x: 200, y: 310, width: 10, height: 10, glow: true, text: 'st1' },
-    { x: 80, y: 650, width: 10, height: 10, glow: true, text: 'st2' },
-    { x: 180, y: 650, width: 10, height: 10, glow: true, text: 'st3' },
+    { x: 200, y: 310, width: 10, height: 10, glow: true, text: 'st1', charIndex: 0 },
+    { x: 80, y: 650, width: 10, height: 10, glow: true, text: 'st2', charIndex: 0 },
+    { x: 180, y: 650, width: 10, height: 10, glow: true, text: 'st3', charIndex: 0 },
   ];
   
   export const stairs = [
