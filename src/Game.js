@@ -275,25 +275,41 @@ const Game = () => {
                 />
 
                 {items.map((item, index) => (
-                    <div
-                        key={index}
-                        className="item"
-                        style={{
-                        left: item.x,
-                        top: item.y,
-                        width: item.width,
-                        height: item.height,
-                        }}
-                    >
-                        <img
-                        src={item.glow ? glowasset : unglowasset}
-                        alt="Item"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                        }}
-                        />
-                    </div>
+                <div
+                    key={index}
+                    className="item"
+                    style={{
+                    left: item.x,
+                    top: item.y,
+                    width: item.width,
+                    height: item.height,
+                    position: 'relative', // Ensure the container is relatively positioned
+                    }}
+                >
+                    <img
+                    src={gifasset}
+                    alt="Item"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        position: 'absolute', // Stack the images
+                        top: 0,
+                        left: 0,
+                    }}
+                    />
+                    <img
+                    src={item.glow ? glowasset : unglowasset}
+                    alt="Item Glow"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        position: 'absolute', // Stack the images
+                        top: 0,
+                        left: 0,
+                        opacity: item.glow ? 0.5 : 0, // Adjust opacity for the glow effect
+                    }}
+                    />
+                </div>
                 ))}
 
                 {stairs.map((stair, index) => (

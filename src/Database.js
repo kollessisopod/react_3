@@ -1,6 +1,3 @@
-  import glowasset from './assets/glowasset.gif';
-  import unglowasset from './assets/unglowasset.gif';
-
 
   export const items = [
     { x: 200, y: 310, width: 10, height: 10, glow: true, text: 'st1' },
