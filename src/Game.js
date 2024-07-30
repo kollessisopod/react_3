@@ -287,7 +287,7 @@ const Game = () => {
                     }}
                 >
                     <img
-                    src={gifasset}
+                    src= {item.assetIndex}
                     alt="Item"
                     style={{
                         width: '100%',
