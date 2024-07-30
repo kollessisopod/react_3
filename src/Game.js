@@ -283,6 +283,7 @@ const Game = () => {
                     width: item.width,
                     height: item.height,
                     position: 'relative', // Ensure the container is relatively positioned
+                    boxShadow: activeItem === item ? '0 0 10px 5px #ff00ff' : 'none', // Add a glow effect
                     }}
                 >
                     <img
@@ -320,6 +321,7 @@ const Game = () => {
                             top: stair.y,
                             width: stair.width,
                             height: stair.height,
+                            boxShadow: activeStair === stair ? '0 0 10px 5px #00ffff' : 'none', // Add a glow effect
                         }}
                     />
                 ))}
