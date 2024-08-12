@@ -12,6 +12,8 @@ import './styles.css';
 
 const Game = () => {
     // State variables //-------------------------------------
+    //                                                      //
+    //--------------------------------------------------------
     const [keys, setKeys] = useState({ left: false, right: false, up: false, down: false, e: false });  // Arrow keys including 'e'
     const [items, setItems] = useState(itemsInit);  // Items
     const [activeAsset, setActiveAsset] = useState(idleAsset); // Player asset selector
@@ -38,7 +40,7 @@ const Game = () => {
     const gravity = 0.5;  // Gravity static value
 
     // Methods //-------------------------------------
-    //
+    //                                              //
     //------------------------------------------------
 
     // Use useCallback to memoize functions
@@ -110,7 +112,7 @@ const Game = () => {
 
 
     // UseEffects //-------------------------------------
-    //
+    //                                                 //
     //---------------------------------------------------
 
     // Item and Stair Collision detection
@@ -303,10 +305,10 @@ const Game = () => {
         // eslint-disable-next-line
     }, [keys, player]);
 
-    
+
 
     // Return //--------------------------------------
-    //
+    //                                              //
     //------------------------------------------------
     
     return (
