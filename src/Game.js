@@ -272,7 +272,7 @@ const Game = () => {
                     return {
                         ...camera,
                         x: player.x,  // Centering the player in the viewport (1080/2)
-                        y: player.y,  // Centering the player in the viewport (720/2)
+                        y: player.y + 20,  // Centering the player in the viewport (720/2)
                     };
                 });
             };
