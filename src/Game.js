@@ -125,8 +125,6 @@ const Game = () => {
         });
       };
 
-
-
     const checkCollision = (rect1, rect2) => {
         return (
             rect1.x < rect2.x + rect2.width &&
@@ -134,6 +132,10 @@ const Game = () => {
             rect1.y < rect2.y + rect2.height &&
             rect1.y + rect1.height > rect2.y
         );
+    };
+
+    const lerp = (start, end, t) => {
+        return start * (1 - t) + end * t;
     };
 
     // Flipper
@@ -144,9 +146,6 @@ const Game = () => {
             setIsFlipped(false);
         }
     }, [keys.left, keys.right]);
-
-
-
 
     // E Key
     useEffect(() => {
@@ -261,19 +260,24 @@ const Game = () => {
                 return newPlayer;
             });
 
-                setCamera((camera) => {
-                    if (player.y < 360) {
-                        return {
-                            ...camera,
-                            x: player.x,  // Centering the player in the viewport (1080/2)
-                            y:0,  // Centering the player in the viewport (720/2)
-                        };
-                    }
-                    return {
-                        ...camera,
-                        x: player.x,  // Centering the player in the viewport (1080/2)
-                        y: player.y + 20,  // Centering the player in the viewport (720/2)
-                    };
+            setCamera((camera) => {
+
+                let newCameraX = camera.x;
+                let newCameraY = camera.y;
+
+                if (player.y < 360) {
+                    newCameraX= player.x;  // Centering the player in the viewport (1080/2)
+                    newCameraY= 0;  // Centering the player in the viewport (720/2)
+                        
+                } else {
+                    newCameraX= player.x;  // Centering the player in the viewport (1080/2)
+                    newCameraY= player.y + 20;  // Centering the player in the viewport (720/2)
+                };
+
+                const smoothX = lerp(camera.x, newCameraX, 0.1);
+                const smoothY = lerp(camera.y, newCameraY, 0.1);
+                
+                return { ...camera, x: smoothX, y: smoothY };
                 });
             };
 
