@@ -7,15 +7,9 @@ import item5Asset from './assets/walkPlaceholder.gif';
 
     /////////////////////////////////////////////   Database.js   /////////////////////////////////////////////
     //                                                                                                       //  
+    //                                                                                                       //
 
-    export const items = [
-    { x: 200, y: 620, width: 30, height: 30, glow: true, text: 'st1', assetIndex: item1Asset},
-    { x:  80, y: 310, width: 30, height: 30, glow: true, text: 'st2', assetIndex: item2Asset},
-    { x: 160, y: 310, width: 30, height: 30, glow: true, text: 'st3', assetIndex: item3Asset},
-    { x: 240, y: 310, width: 30, height: 30, glow: true, text: 'st4', assetIndex: item4Asset},
-    { x: 320, y: 310, width: 30, height: 30, glow: true, text: 'st5', assetIndex: item5Asset},
-  ];
-  
+  //Stairs
   export const stairs = [
     { x: 400, y: 640, width: 10, height: 10 , stairId: 1, stairPointer: 2},
     { x: 400, y: 300, width: 10, height: 10 , stairId: 2, stairPointer: 1},
@@ -23,11 +17,22 @@ import item5Asset from './assets/walkPlaceholder.gif';
     { x: 600, y: 300, width: 10, height: 10 , stairId: 4, stairPointer: 3},
   ];
 
+  //Grounds
   export const ground = [
     { x: 0, y: 690, width: 1080, height: 20 },
     { x: 0, y: 350, width: 1080, height: 20 }
   ];
 
+  //Items
+  export const items = [
+    { x: 200, y: 620, width: 30, height: 30, glow: true, text: 'st1', assetIndex: item1Asset},
+    { x:  80, y: 310, width: 30, height: 30, glow: true, text: 'st2', assetIndex: item2Asset},
+    { x: 160, y: 310, width: 30, height: 30, glow: true, text: 'st3', assetIndex: item3Asset},
+    { x: 240, y: 310, width: 30, height: 30, glow: true, text: 'st4', assetIndex: item4Asset},
+    { x: 320, y: 310, width: 30, height: 30, glow: true, text: 'st5', assetIndex: item5Asset},
+  ];
+
+  //Strings
   export const strings = {
     stdefault: 'default String.',
     st1: 'This is string 1',
