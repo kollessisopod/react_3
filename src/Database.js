@@ -4,7 +4,6 @@ import item3Asset from './assets/walkPlaceholder.gif';
 import item4Asset from './assets/walkPlaceholder.gif';
 import item5Asset from './assets/walkPlaceholder.gif';
 
-
     /////////////////////////////////////////////   Database.js   /////////////////////////////////////////////
     //                                                                                                       //  
     //                                                                                                       //
