@@ -7,7 +7,11 @@ import glowAsset from './assets/glowPlaceholder.gif';
 import { items as itemsInit, strings, stairs, ground } from './Database';
 import './styles.css';
 
+    /////////////////////////////////////////////   Game.js   /////////////////////////////////////////////
+    //                                                                                                  //  
+
 const Game = () => {
+    // State variables //-------------------------------------
     const [keys, setKeys] = useState({ left: false, right: false, up: false, down: false, e: false });  // Arrow keys including 'e'
     const [items, setItems] = useState(itemsInit);  // Items
     const [activeAsset, setActiveAsset] = useState(idleAsset); // Player asset selector
@@ -33,34 +37,9 @@ const Game = () => {
     const [camera, setCamera] = useState({ x: 0, y: 0, zoom: 1.5 }); // Camera state
     const gravity = 0.5;  // Gravity static value
 
-    // Item and Stair Collision detection
-    useEffect(() => {
-        if (previousActiveStair !== activeStair) {
-            if (activeStair && !previousActiveStair) {
-                console.log('Collision with a stair began:', activeStair);
-                setShowHint(true);
-            } else if (previousActiveStair && !activeStair) {
-                console.log('Collision with a stair ended:', previousActiveStair);
-                setShowHint(false);
-            }
-            setPreviousActiveStair(activeStair);
-        }
-
-        if (previousActiveItem !== activeItem) {
-            if (activeItem && !previousActiveItem) {
-                console.log('Collision with an item began:', activeItem);
-                setActiveString(strings[activeItem.text]);
-                setShowHint(true);
-            } else if (previousActiveItem && !activeItem) {
-                console.log('Collision with an item ended:', previousActiveItem);
-                setShowTextbox(false);
-                setShowHint(false);
-                setCharIndex(0);
-                setDisplayedString('');
-            }
-            setPreviousActiveItem(activeItem);
-        }
-    }, [activeStair, previousActiveStair, activeItem, previousActiveItem]);
+    // Methods //-------------------------------------
+    //
+    //------------------------------------------------
 
     // Use useCallback to memoize functions
     const handleKeyDown = useCallback((e) => {
@@ -105,6 +84,65 @@ const Game = () => {
         });
     }, []);
 
+    // Wheel listener
+    const handleWheel = (e) => {
+        setCamera((prevCamera) => {
+          let newZoom = prevCamera.zoom + (e.deltaY * -0.001);
+          newZoom = Math.min(Math.max(newZoom, 1), 2);
+          return { ...prevCamera, zoom: newZoom };
+        });
+    };
+
+    // Collision detection logic
+    const checkCollision = (rect1, rect2) => {
+        return (
+            rect1.x < rect2.x + rect2.width &&
+            rect1.x + rect1.width > rect2.x &&
+            rect1.y < rect2.y + rect2.height &&
+            rect1.y + rect1.height > rect2.y
+        );
+    };
+
+    // Linear interpolation function
+    const lerp = (start, end, t) => {
+        return start * (1 - t) + end * t;
+    };
+
+
+    // UseEffects //-------------------------------------
+    //
+    //---------------------------------------------------
+
+    // Item and Stair Collision detection
+    useEffect(() => {
+        if (previousActiveStair !== activeStair) {
+            if (activeStair && !previousActiveStair) {
+                console.log('Collision with a stair began:', activeStair);
+                setShowHint(true);
+            } else if (previousActiveStair && !activeStair) {
+                console.log('Collision with a stair ended:', previousActiveStair);
+                setShowHint(false);
+            }
+            setPreviousActiveStair(activeStair);
+        }
+
+        if (previousActiveItem !== activeItem) {
+            if (activeItem && !previousActiveItem) {
+                console.log('Collision with an item began:', activeItem);
+                setActiveString(strings[activeItem.text]);
+                setShowHint(true);
+            } else if (previousActiveItem && !activeItem) {
+                console.log('Collision with an item ended:', previousActiveItem);
+                setShowTextbox(false);
+                setShowHint(false);
+                setCharIndex(0);
+                setDisplayedString('');
+            }
+            setPreviousActiveItem(activeItem);
+        }
+    }, [activeStair, previousActiveStair, activeItem, previousActiveItem]);
+
+    // Key listener adders / removers
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
         window.addEventListener('keyup', handleKeyUp);
@@ -117,28 +155,7 @@ const Game = () => {
         };
     }, [handleKeyDown, handleKeyUp]);
 
-    const handleWheel = (e) => {
-        setCamera((prevCamera) => {
-          let newZoom = prevCamera.zoom + (e.deltaY * -0.001);
-          newZoom = Math.min(Math.max(newZoom, 1), 2);
-          return { ...prevCamera, zoom: newZoom };
-        });
-      };
-
-    const checkCollision = (rect1, rect2) => {
-        return (
-            rect1.x < rect2.x + rect2.width &&
-            rect1.x + rect1.width > rect2.x &&
-            rect1.y < rect2.y + rect2.height &&
-            rect1.y + rect1.height > rect2.y
-        );
-    };
-
-    const lerp = (start, end, t) => {
-        return start * (1 - t) + end * t;
-    };
-
-    // Flipper
+    // MC asset flipper
     useEffect(() => {
         if (keys.left) {
             setIsFlipped(true);
@@ -147,7 +164,7 @@ const Game = () => {
         }
     }, [keys.left, keys.right]);
 
-    // E Key
+    // E Key Actions
     useEffect(() => {
         if (keys.e) {
             console.log("e pressed");
@@ -187,7 +204,7 @@ const Game = () => {
         }
     }, [charIndex, showTextbox, activeString]);
 
-    // Asset change
+    // Asset changer
     useEffect(() => {
         if (player.isOnGround) {
             if (keys.left || keys.right) {
@@ -200,7 +217,7 @@ const Game = () => {
         }
     }, [keys, player.isOnGround]);
 
-    // Glow Effect
+    // Glow Effect Manager
     useEffect(() => {
         console.log('Glowing items:', items.filter((item) => item.glow));
 
@@ -286,8 +303,12 @@ const Game = () => {
         // eslint-disable-next-line
     }, [keys, player]);
 
+    
 
-
+    // Return //--------------------------------------
+    //
+    //------------------------------------------------
+    
     return (
         <div className="wrapper">
             

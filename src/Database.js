@@ -1,14 +1,19 @@
 import item1Asset from './assets/walkPlaceholder.gif';
 import item2Asset from './assets/walkPlaceholder.gif';
 import item3Asset from './assets/walkPlaceholder.gif';
+import item4Asset from './assets/walkPlaceholder.gif';
+import item5Asset from './assets/walkPlaceholder.gif';
 
-  export const items = [
+
+    /////////////////////////////////////////////   Database.js   /////////////////////////////////////////////
+    //                                                                                                       //  
+
+    export const items = [
     { x: 200, y: 620, width: 30, height: 30, glow: true, text: 'st1', assetIndex: item1Asset},
-    { x: 80, y: 310, width: 30, height: 30, glow: true, text: 'st2', assetIndex: item2Asset},
+    { x:  80, y: 310, width: 30, height: 30, glow: true, text: 'st2', assetIndex: item2Asset},
     { x: 160, y: 310, width: 30, height: 30, glow: true, text: 'st3', assetIndex: item3Asset},
-    { x: 240, y: 310, width: 30, height: 30, glow: true, text: 'st4', assetIndex: item3Asset},
-    { x: 320, y: 310, width: 30, height: 30, glow: true, text: 'st5', assetIndex: item3Asset},
-
+    { x: 240, y: 310, width: 30, height: 30, glow: true, text: 'st4', assetIndex: item4Asset},
+    { x: 320, y: 310, width: 30, height: 30, glow: true, text: 'st5', assetIndex: item5Asset},
   ];
   
   export const stairs = [
@@ -27,7 +32,7 @@ import item3Asset from './assets/walkPlaceholder.gif';
     stdefault: 'default String.',
     st1: 'This is string 1',
     st2: 'This is string 2',
-    st3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at augue vel enim scelerisque malesuada id ' + 
+    st3: 'String 3 be like, Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at augue vel enim scelerisque malesuada id ' + 
     'eu eros. Phasellus at urna libero. Nullam at diam ultrices, gravida massa id, vestibulum nisi. Praesent tempus eget ' + 
     'purus in aliquam. Quisque placerat rutrum lorem ac ullamcorper. In hac habitasse platea dictumst. Ut gravida ullamcorper ' + 
     'pretium. Vestibulum sodales ante tristique volutpat pretium. Suspendisse suscipit libero in eros fermentum efficitur.',
