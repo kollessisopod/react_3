@@ -1,9 +1,14 @@
-import gifasset from './assets/gifasset.gif';
+import item1Asset from './assets/walkPlaceholder.gif';
+import item2Asset from './assets/walkPlaceholder.gif';
+import item3Asset from './assets/walkPlaceholder.gif';
 
   export const items = [
-    { x: 200, y: 310, width: 30, height: 30, glow: true, text: 'st1', assetIndex: gifasset},
-    { x: 80, y: 650, width: 10, height: 10, glow: true, text: 'st2', assetIndex: gifasset},
-    { x: 180, y: 650, width: 10, height: 10, glow: true, text: 'st3', assetIndex: gifasset},
+    { x: 200, y: 620, width: 30, height: 30, glow: true, text: 'st1', assetIndex: item1Asset},
+    { x: 80, y: 310, width: 30, height: 30, glow: true, text: 'st2', assetIndex: item2Asset},
+    { x: 160, y: 310, width: 30, height: 30, glow: true, text: 'st3', assetIndex: item3Asset},
+    { x: 240, y: 310, width: 30, height: 30, glow: true, text: 'st4', assetIndex: item3Asset},
+    { x: 320, y: 310, width: 30, height: 30, glow: true, text: 'st5', assetIndex: item3Asset},
+
   ];
   
   export const stairs = [
@@ -12,7 +17,7 @@ import gifasset from './assets/gifasset.gif';
     { x: 600, y: 640, width: 10, height: 10 , stairId: 3, stairPointer: 4},
     { x: 600, y: 300, width: 10, height: 10 , stairId: 4, stairPointer: 3},
   ];
-  
+
   export const ground = [
     { x: 0, y: 690, width: 1080, height: 20 },
     { x: 0, y: 350, width: 1080, height: 20 }
@@ -26,4 +31,6 @@ import gifasset from './assets/gifasset.gif';
     'eu eros. Phasellus at urna libero. Nullam at diam ultrices, gravida massa id, vestibulum nisi. Praesent tempus eget ' + 
     'purus in aliquam. Quisque placerat rutrum lorem ac ullamcorper. In hac habitasse platea dictumst. Ut gravida ullamcorper ' + 
     'pretium. Vestibulum sodales ante tristique volutpat pretium. Suspendisse suscipit libero in eros fermentum efficitur.',
+    st4: 'This is string 4',
+    st5: 'This is string 5',
   }

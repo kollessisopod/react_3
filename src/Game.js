@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import KeyTracker from './KeyTracker';
-import catasset from './assets/catasset.png';
-import gifasset from './assets/gifasset.gif';
-import fullmap from './assets/fullmap.png';
-import glowasset from './assets/glowasset.gif';
-import unglowasset from './assets/unglowasset.gif';
+import idleAsset from './assets/idlePlaceholder.png';
+import walkAsset from './assets/walkPlaceholder.gif';
+import fullmap from './assets/mapPlaceholder.png';
+import glowAsset from './assets/glowPlaceholder.gif';
 import { items as itemsInit, strings, stairs, ground } from './Database';
 import './styles.css';
 
 const Game = () => {
     const [keys, setKeys] = useState({ left: false, right: false, up: false, down: false, e: false });  // Arrow keys including 'e'
     const [items, setItems] = useState(itemsInit);  // Items
-    const [activeAsset, setActiveAsset] = useState(catasset); // Player asset selector
+    const [activeAsset, setActiveAsset] = useState(idleAsset); // Player asset selector
     const [isFlipped, setIsFlipped] = useState(false);  // Player asset flipper boolean 
     const [activeItem, setActiveItem] = useState(null); // Active item
     const [activeStair, setActiveStair] = useState(null); // Active stair
@@ -32,7 +31,6 @@ const Game = () => {
         directionX: 1
     });
     const [camera, setCamera] = useState({ x: 0, y: 0, zoom: 1.5 }); // Camera state
-
     const gravity = 0.5;  // Gravity static value
 
     // Item and Stair Collision detection
@@ -64,36 +62,60 @@ const Game = () => {
         }
     }, [activeStair, previousActiveStair, activeItem, previousActiveItem]);
 
-    // Active listeners for arrow keys
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            e.preventDefault();
-            if (e.key === 'ArrowLeft') setKeys((keys) => ({ ...keys, left: true }));
-            if (e.key === 'ArrowRight') setKeys((keys) => ({ ...keys, right: true }));
-            if (e.key === 'ArrowUp') setKeys((keys) => ({ ...keys, up: true }));
-            if (e.key === 'ArrowDown') setKeys((keys) => ({ ...keys, down: true }));
-            if (e.key === 'E' || e.key === 'e') setKeys((keys) => ({ ...keys, e: true }));
-        };
-
-        const handleKeyUp = (e) => {
-            e.preventDefault();
-            if (e.key === 'ArrowLeft') setKeys((keys) => ({ ...keys, left: false }));
-            if (e.key === 'ArrowRight') setKeys((keys) => ({ ...keys, right: false }));
-            if (e.key === 'ArrowUp') setKeys((keys) => ({ ...keys, up: false }));
-            if (e.key === 'ArrowDown') setKeys((keys) => ({ ...keys, down: false }));
-            if (e.key === 'E' || e.key === 'e') setKeys((keys) => ({ ...keys, e: false }));
-        };
-
-      window.addEventListener('keydown', handleKeyDown);
-      window.addEventListener('keyup', handleKeyUp);
-      window.addEventListener('wheel', handleWheel);
-
-      return () => {
-          window.removeEventListener('keydown', handleKeyDown);
-          window.removeEventListener('keyup', handleKeyUp);
-          window.removeEventListener('wheel', handleWheel);
-      };
+    // Use useCallback to memoize functions
+    const handleKeyDown = useCallback((e) => {
+        e.preventDefault();
+        setKeys((prevKeys) => {
+            switch (e.key) {
+                case 'ArrowLeft':
+                    return { ...prevKeys, left: true };
+                case 'ArrowRight':
+                    return { ...prevKeys, right: true };
+                case 'ArrowUp':
+                    return { ...prevKeys, up: true };
+                case 'ArrowDown':
+                    return { ...prevKeys, down: false };
+                case 'E':
+                case 'e':
+                    return { ...prevKeys, e: true };
+                default:
+                    return prevKeys;
+            }
+        });
     }, []);
+
+    const handleKeyUp = useCallback((e) => {
+        e.preventDefault();
+        setKeys((prevKeys) => {
+            switch (e.key) {
+                case 'ArrowLeft':
+                    return { ...prevKeys, left: false };
+                case 'ArrowRight':
+                    return { ...prevKeys, right: false };
+                case 'ArrowUp':
+                    return { ...prevKeys, up: false };
+                case 'ArrowDown':
+                    return { ...prevKeys, down: false };
+                case 'E':
+                case 'e':
+                    return { ...prevKeys, e: false };
+                default:
+                    return prevKeys;
+            }
+        });
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keyup', handleKeyUp);
+        window.addEventListener('wheel', handleWheel);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('keyup', handleKeyUp);
+            window.removeEventListener('wheel', handleWheel);
+        };
+    }, [handleKeyDown, handleKeyUp]);
 
     const handleWheel = (e) => {
         setCamera((prevCamera) => {
@@ -122,6 +144,9 @@ const Game = () => {
             setIsFlipped(false);
         }
     }, [keys.left, keys.right]);
+
+
+
 
     // E Key
     useEffect(() => {
@@ -167,11 +192,11 @@ const Game = () => {
     useEffect(() => {
         if (player.isOnGround) {
             if (keys.left || keys.right) {
-                setActiveAsset(gifasset);
+                setActiveAsset(walkAsset);
             } else if (keys.up) {
-                setActiveAsset(gifasset);
+                setActiveAsset(walkAsset);
             } else {
-                setActiveAsset(catasset);
+                setActiveAsset(idleAsset);
             }
         }
     }, [keys, player.isOnGround]);
@@ -222,9 +247,14 @@ const Game = () => {
                 // Check for ground collision
                 ground.forEach((ground) => {
                     if (checkCollision(newPlayer, ground)) {
+                        if(keys.up) {
+                            newPlayer.velocityY = -10;
+                        }
+                        else {
                         newPlayer.isOnGround = true;
                         newPlayer.y = ground.y - newPlayer.height; // Align player with the ground
                         newPlayer.velocityY = 0;
+                        }
                     }
                 });
 
@@ -232,10 +262,17 @@ const Game = () => {
             });
 
                 setCamera((camera) => {
+                    if (player.y < 360) {
+                        return {
+                            ...camera,
+                            x: player.x,  // Centering the player in the viewport (1080/2)
+                            y:0,  // Centering the player in the viewport (720/2)
+                        };
+                    }
                     return {
                         ...camera,
-                        x: player.x - 540,  // Centering the player in the viewport (1080/2)
-                        y: player.y - 360,  // Centering the player in the viewport (720/2)
+                        x: player.x,  // Centering the player in the viewport (1080/2)
+                        y: player.y,  // Centering the player in the viewport (720/2)
                     };
                 });
             };
@@ -245,7 +282,7 @@ const Game = () => {
         // eslint-disable-next-line
     }, [keys, player]);
 
-    
+
 
     return (
         <div className="wrapper">
@@ -259,7 +296,7 @@ const Game = () => {
                 style={{
                     backgroundImage: `url(${fullmap})`,
                     transform: `translate(-50%, -50%) scale(${camera.zoom})`,
-                    transformOrigin: `${player.x}px ${player.y}px`,
+                    transformOrigin: `${camera.x}px ${camera.y}px`,
                 }}
             >
                 <img
@@ -282,7 +319,7 @@ const Game = () => {
                     top: item.y,
                     width: item.width,
                     height: item.height,
-                    position: 'relative', // Ensure the container is relatively positioned
+                    position: 'absolute', // Ensure the container is relatively positioned
                     boxShadow: activeItem === item ? '0 0 10px 5px #ff00ff' : 'none', // Add a glow effect
                     }}
                 >
@@ -298,7 +335,7 @@ const Game = () => {
                     }}
                     />
                     <img
-                    src={item.glow ? glowasset : unglowasset}
+                    src={item.glow ? glowAsset : null}
                     alt="Item Glow"
                     style={{
                         width: '100%',
