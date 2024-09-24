@@ -429,7 +429,7 @@ const Game = () => {
                     <div
                         className="textbox"
                         style={{
-                            bottom: `${window.innerHeight - activeItem.y}px`,
+                            bottom: `${730 - activeItem.y}px`, // Place it above the item (adjust 20 as needed)
                             left: `${activeItem.x + activeItem.width / 2}px`,
                             transform: 'translateX(-50%)',
                           }}

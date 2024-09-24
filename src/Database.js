@@ -32,6 +32,7 @@ import item5Asset from './assets/walkPlaceholder.gif';
     { index: 3, x:  80, y: 310, width: 30, height: 30, glow: true, assetIndex: item2Asset},
     { index: 4, x: 240, y: 310, width: 30, height: 30, glow: true, assetIndex: item4Asset},
     { index: 5, x: 320, y: 310, width: 30, height: 30, glow: true, assetIndex: item5Asset},
+    { index: 6, x: 400, y: 620, width: 30, height: 30, glow: true, assetIndex: item5Asset},
   ];
 
   //Strings
@@ -45,7 +46,7 @@ import item5Asset from './assets/walkPlaceholder.gif';
     'pretium. Vestibulum s ENodales ante tristique volutpat pretium. Suspendisse suscipit libero in eros fermentum efficitur.',
     en4: 'This is string 4 EN',
     en5: 'This is string 5 EN',
-
+    en6: 'This is string 6 EN',
 
 
 
@@ -60,5 +61,6 @@ import item5Asset from './assets/walkPlaceholder.gif';
     'pretium. Vestibulum s TR odales ante tristique volutpat pretium. Suspendisse suscipit libero in eros fermentum efficitur.',
     tr4: 'This is string 4 TR ',
     tr5: 'This is string 5 TR ',
+    tr6: 'This is string 6 TR ',
 
   }
