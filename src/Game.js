@@ -25,7 +25,7 @@ const Game = () => {
     const [previousActiveItem, setPreviousActiveItem] = useState(null); // Previous active item for collision detection
     const [showTextbox, setShowTextbox] = useState(false);  // Textbox show boolean
     const [showHint, setShowHint] = useState(false);  // Hint show boolean
-    const [activeString, setActiveString] = useState(strings.stdefault); // Active string
+    const [activeString, setActiveString] = useState(strings.endefault); // Active string
     const [displayedString, setDisplayedString] = useState(''); // Displayed string
     const [charIndex, setCharIndex] = useState(0); // Character index for string showmaker
     const [player, setPlayer] = useState({ // Player object
@@ -39,6 +39,10 @@ const Game = () => {
     });
     const [camera, setCamera] = useState({ x: 0, y: 0, zoom: 1.5 }); // Camera state
     const gravity = 0.5;  // Gravity static value
+    const en = 'en';
+    const tr = 'tr';  
+    const [language, setLanguage] = useState(en); // Default to English ('EN')
+
 
     // Methods //-------------------------------------
     //                                              //
@@ -111,6 +115,10 @@ const Game = () => {
         return start * (1 - t) + end * t;
     };
 
+    const toggleLanguage = () => {
+        setLanguage((prevLang) => (prevLang === en ? tr : en));
+    };
+   
 
     // UseEffects //-------------------------------------
     //                                                 //
@@ -196,9 +204,10 @@ const Game = () => {
         // eslint-disable-next-line
     }, [keys.e]);
 
+
     // Textbox Showmaker
     useEffect(() => {
-        if (showTextbox && charIndex < activeString.length) {
+        if (showTextbox && activeString && charIndex < activeString.length) {
             const timer = setTimeout(() => {
                 setDisplayedString((prev) => prev + activeString[charIndex]);
                 setCharIndex((prev) => prev + 1);
@@ -206,6 +215,16 @@ const Game = () => {
             return () => clearTimeout(timer);
         }
     }, [charIndex, showTextbox, activeString]);
+
+
+    // String chooser
+    useEffect(() => {
+        if (activeItem) {
+            const stringKey = `${language}${activeItem.index}`;  
+            console.log('String key:', stringKey);
+            setActiveString(strings[stringKey] || strings[`${language}default`]);
+        }
+    }, [activeItem, language]);
 
     // Asset changer
     useEffect(() => {
@@ -318,6 +337,8 @@ const Game = () => {
             <div className="hud">
                         <p>Zoom Level: {camera.zoom.toFixed(2)}</p>
                         <KeyTracker/>
+                        <button onClick={toggleLanguage}>{language}</button>
+
                 </div>
             <div
                 className="game-container"

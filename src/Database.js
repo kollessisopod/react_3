@@ -8,8 +8,6 @@ import item5Asset from './assets/walkPlaceholder.gif';
     //                                                                                                       //  
     //                                                                                                       //
 
-  const en = 'EN';
-  const tr = 'TR';
 
 
 
@@ -29,38 +27,38 @@ import item5Asset from './assets/walkPlaceholder.gif';
 
   //Items
   export const items = [
-    { x: 200, y: 620, width: 30, height: 30, glow: true, text: en + `1`, assetIndex: item1Asset},
-    { x:  80, y: 310, width: 30, height: 30, glow: true, text: en + `2`, assetIndex: item2Asset},
-    { x: 160, y: 310, width: 30, height: 30, glow: true, text: en + `3`, assetIndex: item3Asset},
-    { x: 240, y: 310, width: 30, height: 30, glow: true, text: en + `4`, assetIndex: item4Asset},
-    { x: 320, y: 310, width: 30, height: 30, glow: true, text: en + `5`, assetIndex: item5Asset},
+    { index: 1, x: 200, y: 620, width: 30, height: 30, glow: true, assetIndex: item1Asset},
+    { index: 2, x: 160, y: 310, width: 30, height: 30, glow: true, assetIndex: item3Asset},
+    { index: 3, x:  80, y: 310, width: 30, height: 30, glow: true, assetIndex: item2Asset},
+    { index: 4, x: 240, y: 310, width: 30, height: 30, glow: true, assetIndex: item4Asset},
+    { index: 5, x: 320, y: 310, width: 30, height: 30, glow: true, assetIndex: item5Asset},
   ];
 
   //Strings
   export const strings = {
-    endefault: 'default String.',
-    en1: 'This is string 1',
-    en2: 'This is string 2',
-    en3: 'String 3 be like, Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at augue vel enim scelerisque malesuada id ' + 
-    'eu eros. Phasellus at urna libero. Nullam at diam ultrices, gravida massa id, vestibulum nisi. Praesent tempus eget ' + 
-    'purus in aliquam. Quisque placerat rutrum lorem ac ullamcorper. In hac habitasse platea dictumst. Ut gravida ullamcorper ' + 
-    'pretium. Vestibulum sodales ante tristique volutpat pretium. Suspendisse suscipit libero in eros fermentum efficitur.',
-    en4: 'This is string 4',
-    en5: 'This is string 5',
+    endefault: 'default String en.',
+    en1: 'This is string 1 EN ',
+    en2: 'This is string 2 EN',
+    en3: 'String 3 be like EN, Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at augue vel enim scelerisque malesuada id ' + 
+    'eu eros. Phasellus at EN urna libero. Nullam at diam ultrices, gravida massa id, vestibulum nisi. Praesent tempus eget ' + 
+    'purus in aliquam. Qui ENsque placerat rutrum lorem ac ullamcorper. In hac habitasse platea dictumst. Ut gravida ullamcorper ' + 
+    'pretium. Vestibulum s ENodales ante tristique volutpat pretium. Suspendisse suscipit libero in eros fermentum efficitur.',
+    en4: 'This is string 4 EN',
+    en5: 'This is string 5 EN',
 
 
 
 
 
 
-    trdefault: 'default String.',
-    tr1: 'This is string 1',
-    tr2: 'This is string 2',
-    tr3: 'String 3 be like, Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at augue vel enim scelerisque malesuada id ' + 
-    'eu eros. Phasellus at urna libero. Nullam at diam ultrices, gravida massa id, vestibulum nisi. Praesent tempus eget ' + 
-    'purus in aliquam. Quisque placerat rutrum lorem ac ullamcorper. In hac habitasse platea dictumst. Ut gravida ullamcorper ' + 
-    'pretium. Vestibulum sodales ante tristique volutpat pretium. Suspendisse suscipit libero in eros fermentum efficitur.',
-    tr4: 'This is string 4',
-    tr5: 'This is string 5',
+    trdefault: 'default String tr.',
+    tr1: 'This is string 1 TR ',
+    tr2: 'This is string 2 TR ',
+    tr3: 'String 3 be like TR , Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at augue vel enim scelerisque malesuada id ' + 
+    'eu eros. Phasellus at TR  urna libero. Nullam at diam ultrices, gravida massa id, vestibulum nisi. Praesent tempus eget ' + 
+    'purus in aliquam. Qui TR sque placerat rutrum lorem ac ullamcorper. In hac habitasse platea dictumst. Ut gravida ullamcorper ' + 
+    'pretium. Vestibulum s TR odales ante tristique volutpat pretium. Suspendisse suscipit libero in eros fermentum efficitur.',
+    tr4: 'This is string 4 TR ',
+    tr5: 'This is string 5 TR ',
 
   }
