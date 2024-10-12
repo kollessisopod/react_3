@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import KeyTracker from './KeyTracker';
 import idleAsset from './assets/idlePlaceholder.png';
 import walkAsset from './assets/walkPlaceholder.gif';
-import fullmap from './assets/mapPlaceholder.png';
+import ASSET_background from './assets/MapBackground.png';
 import glowAsset from './assets/glowPlaceholder.gif';
 import { items as itemsInit, strings, stairs, ground } from './Database';
 import './styles.css';
@@ -343,7 +343,7 @@ const Game = () => {
             <div
                 className="game-container"
                 style={{
-                    backgroundImage: `url(${fullmap})`,
+                    backgroundImage: `url(${ASSET_background})`,
                     transform: `translate(-50%, -50%) scale(${camera.zoom})`,
                     transformOrigin: `${camera.x}px ${camera.y}px`,
                 }}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import version from './version.json'; // Adjust path as needed
 
 const KeyTracker = () => {
   const [pressedKeys, setPressedKeys] = useState({});
@@ -52,6 +53,7 @@ const KeyTracker = () => {
   return (
     <div>
       <p>Pressed Keys: {keyConfig.join(' ')}</p>
+      <p>Version: {version.version}</p> 
     </div>
   );
 };
