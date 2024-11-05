@@ -178,7 +178,7 @@ const Game = () => {
     // E Key Actions
     useEffect(() => {
         if (keys.e) {
-            console.log("e pressed");
+            console.log("e pressed (sade selam)");
 
             if (activeItem) {
                 setItems((items) =>
@@ -314,8 +314,7 @@ const Game = () => {
                 };
 
                 const smoothX = lerp(camera.x, newCameraX, 0.1);
-                const smoothY = lerp(camera.y, newCameraY, 0.1);
-                
+                const smoothY = lerp(camera.y, newCameraY, 0.1);           
                 return { ...camera, x: smoothX, y: smoothY };
                 });
             };
