@@ -61,10 +61,7 @@ CV Document file
 
 Computer Room:
 
-database management system -> postgreSQL + unity c#
-database management system -> java
-deep learning -> python
-C knowledge
+many
 
 games -> mantis sim(game design + programming), descendant (level design), death from laughter (puzzle design)
 
@@ -76,12 +73,13 @@ english level
 FRC maybe
 dogdok
 
-
 Hobby Room:
 bugs
 DIY
 pin, bookmark and keychain collections
+skateboard
 
+-----------------------------------------------------------------------------------------
 
 Study Room Full List:
 1- BK Graduation certificate -> info about kayseri BKFL
@@ -92,19 +90,22 @@ Study Room Full List:
 
 Computer Room Full List:
 1- flowcharts on the wall -> C
-2- some item ? on left corner -> erasmus masters degree classes
+2- robot head figure on left corner -> erasmus masters degree classes
 a computer with 3 monitors around
 3- a monitor with a neural network schema figure -> deep learning
 4- a monitor with dms UI screen -> fullstack knowledge
 5- a monitor with the descedant game -> game design
+6- coffee -> OOP knowledge (java)
 
 Living Room Full List:
 1- italy and eu flag -> Erasmus experience
 2- tv screen -> visited countries - cities (austria-vienna, slovenia-bratislava, prague-czech, -switzerland-geneva&montreux and italy ones)
 3- toy globe -> english capacity & level
 a desk is present
-4- a trophy and a frc hat -> FRC experience
-5- treasurer's notebook -> dogdok treasurer experience
+4- on desk, a trophy and a frc hat -> FRC experience
+5- on desk, treasurer's notebook -> dogdok treasurer experience
+6- medals and cup -> airsoft shooting
+
 
 Hobby Room Full List:
 a desk is present
