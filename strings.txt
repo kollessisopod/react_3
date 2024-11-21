@@ -1,99 +1,104 @@
+"Welcome to my house! I will do my best to tell you about bits and pieces of my life. Have fun!"
+
 Study Room Full List:
 1- BK Graduation certificate -> info about kayseri BKFL
 
+"I graduated from Kayseri Bahçeşehir Science Highschool in 2020 and got into Uludağ University for the Medicine degree."
 
+(deprecated)X  |    2- YKS books and a paper snail -> YKS Result (cringe)
 
-2- YKS books and a paper snail -> YKS Result
+3- discarded stetoscope and doctors robe -> med left
 
-
-
-3- discarded stetoscope -> med left
-
-
+"After passing the first grade in Uludag Uni's Medicine, I decided I wanted to pursue a career in computer engineering and
+switched my major CE at Yildiz Technical University. "
 
 4- yearbook and a graduation hat -> YTU CE info
 
-
+"I am still a student and planning to graduate from YTU in 2025."
 
 5- a floating piece of paper -> documentable cv file
 
-
+"Click here to download my Academic CV."
 
 
 Computer Room Full List:
 1- flowcharts on the wall -> C
 
 
-
-2- robot head figure on left corner -> erasmus masters degree classes
-
-
-
 a computer with 3 monitors around
 3- a monitor with a neural network schema figure -> deep learning
+"Me and my colleague are currently working on the "Food Image Segmentation" project assigned to us by our projects mentor at YTU.
+The project has Image processing and CNN at its core and regarding link will be published here when it's done. "
 
+"The other deep learning project I worked on was a number-recognizer made with Keras datasets. This project acted as finals to pass 
+my Erasmus+ class and I got a 30/30 with this. Github code and presentation may be accessed here:
 
 
 4- a monitor with dms UI screen -> fullstack knowledge
-
-
+"I have been a part of may API projects, some as a part of a team and some by myself. For instance:
+- A monolithic Magazine Distribution System (Java), my first attempt as a fullstack developer:
+- A Pet Adoption Forum API (PostgreSQL, Unity C#), which I was a part of the database team.
+- A monolithic Supply Chain Management System (Java), which I made the whole thing basically.
+- Microsoft Auth Temp (ASP.NET Core, C#), a template program I made to guide the Backend team to implement "Login with Microsoft" during my Internship
+Right now, at my 4th year at the university I am continuing my internship at Renault-Mais as a part of Backend team to continue 
+developing AtlasDMS project."
 
 5- a monitor with the descedant game -> game design
+"I am interested in video game design and development, and I participated in three game jams until now. I've also made my own project fpr the Game Design class I took.
+These games are, in chronological order;
+- The Descendant, which I designed all of the levels as the Level Designer
+- Mantis Simulator, which was my own UE5 project for the game design class
+- Death From Laughter, which I made some of the puzzles as the secondary Game Designer
+- Iskir, which I designed and balanced as the Game Designer  
 
-
-
-6- coffee -> OOP knowledge (java)
-
-
+6- small laptop on the side with Kanatci Ibo 
+"Some hobby Projects I made for myself in my free time are,
+- CV Knight, this website for displaying my skills in a fun way
+- Saver-Loader, a basic database recording website which uses GitHub as its database,
+- Kanatci-İBot, the discord bot I made for funsies.
 
 
 Living Room Full List:
 1- italy and eu flag -> Erasmus experience
-
-
-
 2- tv screen -> visited countries - cities (austria-vienna, slovenia-bratislava, prague-czech, -switzerland-geneva&montreux and italy ones)
+(fused)
 
-
+"On my second year at YTU I have participated in the Erasmus+ Student Exchange Programme. For half a year, I lived in Napoli. Italy and met with many people from different cultures.
+Not only I have successfully completed the programme, but I also visited some of the European cities that have been interested in. In Italy I visited Milan, Florence, Pisa, Bologna and Rome. 
+I also visited Geneva, Montreux, Vienna, Bratislava and Prague."
 
 3- toy globe -> english capacity & level
 
-
+"I am a fluent English speaker with 94 points from YOKDIL."
 
 a desk is present
 4- on desk, a trophy and a frc hat -> FRC experience
 
-"In my high school years, I was a part of the FRC Team Tornado 7227 as a mechanic, and our team won the Entrepreneurship prize that year. 
+"In my high school years, I was a part of the FRC Team Tornado 7227 as a mechanic, and our team won the Entrepreneurship prize. 
 
 5- on desk, treasurer's notebook -> dogdok treasurer experience
 
-"I was in the treasurer role of the executive board of a student club in YTU. After my treasurer year was finished, I have also been in the Supervisory Board of the same club next year."
-"I was also the manager of parkour community for a year in extreme sports club"
+"I was the Treasurer of the executive board of a student club in YTU. After my treasurer year was finished, I have also been a part of the Supervisory Board of the same club the next year."
+"I was also the manager of parkour community for a year in Extreme Sports club"
 
 6- medals and cup -> airsoft shooting
 
-
+"I was the team leader of Erciyes Airsoft Pistol Shooting Team and won a few golden medals and a trophy from local tournaments. 
+I earned a silver medal from region-wide and 7th place in the nation-wide tournaments. My personal best score is 556/600 in 10m"
 
 
 
 Hobby Room Full List:
 a desk is present
 1- on desk, diy making tools -> diy
-
-
+"I love DIY projects! If there is proper space for it, I set up a workshop in my free time to work on some handcrafted figures or models."
 
 2- on desk, game console -> video games
-
-
+"Although not as much as I used to, I still enjoy video games when I have the time. I have a variety of favorite genres but some of my favorite games are Celeste, Hollow Knight and Pokemon series.
 
 3- on desk, a globe aquarium with an isopod in it -> bugs, marine life
+"My biggest interest in science is evolution and I am a fan of arthropods. I research about entomology news and love to learn cool bug facts. I am also deeply interested in deep sea creatures and marine life.
 
 
-
-4- running shoes -> outdoor sports
-
-
-
-5- ??
-
-
+4- my cruiseboard -> outdoor sports
+"Sometimes I get the urge to skate through a park or do freerunning where people won't judge me."
