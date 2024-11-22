@@ -20,6 +20,9 @@ switched my major CE at Yildiz Technical University. "
 
 "Click here to download my Academic CV."
 
+6- car key Renault
+"Right now, I am a long term intern at Renault-Mais company as a Backend developer. More detail can be found in Computer room about my internship projects"
+
 
 Computer Room Full List:
 1- flowcharts on the wall -> C
